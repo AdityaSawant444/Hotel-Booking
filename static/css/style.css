@@ -63,6 +63,7 @@ footer {
     text-align: center;
 }
 
+
 /* Responsive for Tablets & Smaller */
 @media (max-width: 767.98px) {
     .hero h1 {
@@ -76,6 +77,12 @@ footer {
 
 /* Mobile View (phones <576px) */
 @media (max-width: 400px) {
+
+    .navbar-toggler {
+        margin-left:auto !important;
+        margin-right:0 !important;
+        display: block;
+    }
     
     .container, .container-fluid {
         padding-left: 0.75rem !important;
@@ -120,7 +127,6 @@ footer {
 
     .mt-5 {
         margin-top: 2rem !important;
-
         
     }
 
