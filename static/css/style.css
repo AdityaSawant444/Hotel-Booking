@@ -77,19 +77,27 @@ footer {
 
 /* Mobile View (phones <576px) */
 @media (max-width: 400px) { 
-    .navbar {
-       padding-top: 0.5rem;
-       padding-bottom:0.5rem;
-    }
-    .navbar-brand {
-        font-size: 1.5rem;
-       
-    }
-    .navbar-toggler {
-        margin-left:auto !important;
-        margin-right:0 !important;
-        display: block;
-    }
+    .navbar .container {
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .navbar-brand {
+    font-size: 1.1rem;
+    margin-bottom: 0 !important;
+  }
+
+  .navbar-toggler {
+    padding: 0.25rem 0.5rem;
+    font-size: 1rem;
+    margin-left: auto;
+  }
+  .navbar-collapse {
+    margin-top: 0.5rem;
+  }
     
     .container, .container-fluid {
         padding-left: 0.75rem !important;
