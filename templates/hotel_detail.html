@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ hotel.name }} - Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">Hotel Booking</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/hotels/">Hotels</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/bookings/">Bookings</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Profile
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                            {% if user.is_authenticated %}
+                                <li><span class="dropdown-item-text">Hello, {{ user.username }}</span></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+                            {% else %}
+                                <li><a class="dropdown-item" href="/login/">Login</a></li>
+                                <li><a class="dropdown-item" href="/signup/">Signup</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container py-5">
+        <div class="row mb-4">
+            <div class="col-md-5">
+                {% if hotel.image %}
+                <img src="{{ hotel.image.url }}" class="img-fluid rounded shadow" alt="{{ hotel.name }}">
+                {% else %}
+                <img src="/static/images/h1.jpg" class="img-fluid rounded shadow" alt="{{ hotel.name }}">
+                {% endif %}
+            </div>
+            <div class="col-md-7">
+                <h2>{{ hotel.name }}</h2>
+                <p class="text-muted">{{ hotel.location }}</p>
+                <p>{{ hotel.description }}</p>
+            </div>
+        </div>
+        <h4 class="mb-3">Available Rooms</h4>
+        <div class="row">
+            {% for room in rooms %}
+            <div class="card mb-4">
+                <!-- Bootstrap Carousel Slider for each room -->
+                <div id="carouselRoom{{ room.id }}" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    {% if room.image %}
+                    <div class="carousel-item active">
+                      <img src="{{ room.image.url }}" class="d-block w-100" alt="Main Image">
+                    </div>
+                    {% endif %}
+                    {% if room.bathroom_image %}
+                    <div class="carousel-item">
+                      <img src="{{ room.bathroom_image.url }}" class="d-block w-100" alt="Bathroom">
+                    </div>
+                    {% endif %}
+                    {% if room.view_image %}
+                    <div class="carousel-item">
+                      <img src="{{ room.view_image.url }}" class="d-block w-100" alt="View">
+                    </div>
+                    {% endif %}
+                  </div>
+              
+                  <!-- Slider controls -->
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselRoom{{ room.id }}" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselRoom{{ room.id }}" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                  </button>
+                </div>
+              
+                <!-- Room info -->
+                <div class="card-body">
+                  <h5 class="card-title">{{ room.room_type }} - Room {{ room.room_number }}</h5>
+                  <strong>Price per night</strong>
+                  <p class="card-text">Price: ₹{{ room.price }}</p>
+                  <div style="margin: 10px 0;">
+                    
+                  <p class="text-success">Available</p>
+                  <a href="{% url 'book_room' room.id %}" class="btn btn-primary">Book Now</a>
+                </div>
+              </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p>No rooms available for this hotel.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <footer class="bg-primary text-white text-center py-3">
+        <div class="container">
+            &copy; 2024 Hotel Booking. All rights reserved.
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/script.js/room_count.js"></script>
+</body>
+</html> 

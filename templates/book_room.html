@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Room - {{ room.room_type }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">Hotel Booking</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/hotels/">Hotels</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/bookings/">Bookings</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h3 class="card-title mb-4">Book Room - {{ room.room_type }}</h3>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <h5>Room Details</h5>
+                                <p><strong>Room Number:</strong> {{ room.room_number }}</p>
+                                <p><strong>Room Type:</strong> {{ room.room_type }}</p>
+                                <p><strong>Hotel:</strong> {{ room.hotel.name }}</p>
+                                <p><strong>Location:</strong> {{ room.hotel.location }}</p>
+                                <p><strong>Number of Rooms:</strong> {{ form.num_rooms }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Pricing</h5>
+                                <p><strong>Price per night:</strong> ₹{{ room.price }}</p>
+                                <p><strong>Number of Rooms:</strong> <span id="room-count">1</span></p>
+                                <p><strong>Total Amount:</strong> ₹<span id="total-amount">{{ room.price }}</span></p>
+                            </div>
+                        </div>
+
+                        <form method="post" id="payment-form" data-room-id="{{ room.id }}">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="{{ form.guest_name.id_for_label }}" class="form-label">Guest Name *</label>
+                                        {{ form.guest_name }}
+                                        {% if form.guest_name.errors %}
+                                            <div class="text-danger">{{ form.guest_name.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="{{ form.guest_email.id_for_label }}" class="form-label">Email Address *</label>
+                                        {{ form.guest_email }}
+                                        {% if form.guest_email.errors %}
+                                            <div class="text-danger">{{ form.guest_email.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="{{ form.guest_phone.id_for_label }}" class="form-label">Phone Number *</label>
+                                        {{ form.guest_phone }}
+                                        {% if form.guest_phone.errors %}
+                                            <div class="text-danger">{{ form.guest_phone.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="{{ form.num_adults.id_for_label }}" class="form-label">Number of Adults</label>
+                                        {{ form.num_adults }}
+                                        {% if form.num_adults.errors %}
+                                            <div class="text-danger">{{ form.num_adults.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="{{ form.num_children.id_for_label }}" class="form-label">Number of Children</label>
+                                        {{ form.num_children }}
+                                        {% if form.num_children.errors %}
+                                            <div class="text-danger">{{ form.num_children.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="{{ form.check_in.id_for_label }}" class="form-label">Check-in Date *</label>
+                                        {{ form.check_in }}
+                                        {% if form.check_in.errors %}
+                                            <div class="text-danger">{{ form.check_in.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="{{ form.check_out.id_for_label }}" class="form-label">Check-out Date *</label>
+                                        {{ form.check_out }}
+                                        {% if form.check_out.errors %}
+                                            <div class="text-danger">{{ form.check_out.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="{{ form.num_rooms.id_for_label }}" class="form-label">Confirm Number of Rooms</label>
+                                        {{ form.num_rooms }}
+                                        {% if form.num_rooms.errors %}
+                                            <div class="text-danger">{{ form.num_rooms.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {% if form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    {% for error in form.non_field_errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            
+                            <div class="alert alert-info">
+                                <h6>Payment Information</h6>
+                                <p class="mb-0">Click "Checkout" to proceed to Razorpay's secure payment gateway. We accept all major credit cards, UPI, net banking, and digital wallets.</p>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <a href="/hotels/{{ room.hotel.id }}/" class="btn btn-secondary">Cancel</a>
+                                <button type="submit" class="btn btn-primary">Checkout</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+    <footer class="bg-primary text-white text-center py-3">
+        <div class="container">
+            &copy; 2024 Hotel Booking. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Temporarily disabled to test form submission -->
+    <!-- <script src="/static/script.js/payment.js"></script> -->
+    
+    <script src="/static/script.js/room_count.js"></script>
+    
+    <script>
+        // Calculate total amount based on number of rooms
+        function updateTotalAmount() {
+            const numRoomsInput = document.querySelector('[name="num_rooms"]');
+            const numRooms = parseInt(numRoomsInput ? numRoomsInput.value : 1) || 1;
+            const pricePerNight = parseFloat('{{ room.price }}');
+            const totalAmount = numRooms * pricePerNight;
+            
+            console.log('Updating total amount:', {
+                numRooms: numRooms,
+                pricePerNight: pricePerNight,
+                totalAmount: totalAmount
+            });
+            
+            const roomCountElement = document.getElementById('room-count');
+            const totalAmountElement = document.getElementById('total-amount');
+            
+            if (roomCountElement) {
+                roomCountElement.textContent = numRooms;
+            }
+            if (totalAmountElement) {
+                totalAmountElement.textContent = totalAmount.toFixed(2);
+            }
+        }
+        
+        // Update total when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing total amount calculation');
+            updateTotalAmount();
+            
+            // Update total when number of rooms changes
+            const numRoomsInput = document.querySelector('[name="num_rooms"]');
+            if (numRoomsInput) {
+                console.log('Found num_rooms input, adding event listeners');
+                numRoomsInput.addEventListener('change', function() {
+                    console.log('Number of rooms changed to:', this.value);
+                    updateTotalAmount();
+                });
+                numRoomsInput.addEventListener('input', function() {
+                    console.log('Number of rooms input to:', this.value);
+                    updateTotalAmount();
+                });
+            } else {
+                console.log('No num_rooms input found');
+            }
+        });
+    </script>
+</body>
+</html> 

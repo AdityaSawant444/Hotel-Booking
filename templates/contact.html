@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Support - Hotel Booking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .contact-form {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="contact-form">
+        <h2 class="text-center mb-4">Contact Support</h2>
+        <p class="text-center text-muted">We're here to help! Get in touch with our customer support team.</p>
+
+        <form method="POST">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="name" class="form-label">Full Name *</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email Address *</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="subject" class="form-label">Choose a Topic *</label>
+            <select class="form-select" id="subject" name="subject" required>
+              <option value="">-- Select --</option>
+              <option value="booking">Booking Issue</option>
+              <option value="payment">Payment Problem</option>
+              <option value="cancellation">Cancellation / Refund</option>
+              <option value="room">Room Information</option>
+              <option value="checkin">Check-in / Check-out</option>
+              <option value="special">Special Request</option>
+              <option value="technical">Technical Support</option>
+              <option value="general">General Inquiry</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="message" class="form-label">Message *</label>
+            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+          </div>
+        </form>
+       
+    
+
+      <!-- Contact Info -->
+      <div class="mt-5">
+        <h5>📞 Phone Support</h5>
+        <p><strong>Customer Service:</strong> +91 1800-123-4567</p>
+        <p><strong>Technical Support:</strong> +91 1800-987-6543</p>
+        <p class="text-muted">Available: Monday - Saturday, 9:00 AM - 8:00 PM IST</p>
+
+        <h5>📧 Email Support</h5>
+        <p><strong>General Inquiries:</strong> support@hotelbooking.com</p>
+        <p class="text-muted">Response time: Within 24 hours</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

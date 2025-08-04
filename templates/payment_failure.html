@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Failed - Hotel Booking</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">Hotel Booking</a>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="#dc3545"/>
+                                <path d="M15 9L9 15M9 9L15 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        
+                        <h2 class="card-title text-danger mb-3">Payment Failed</h2>
+                        <p class="lead mb-4">We're sorry, but your payment could not be processed. Please try again or contact support if the problem persists.</p>
+                        
+                        <div class="alert alert-warning">
+                            <h6>What happened?</h6>
+                            <p class="mb-0">Your payment was not completed. This could be due to insufficient funds, network issues, or other payment-related problems.</p>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <h6>Common Solutions</h6>
+                                <ul class="text-start">
+                                    <li>Check your payment method details</li>
+                                    <li>Ensure sufficient funds are available</li>
+                                    <li>Try a different payment method</li>
+                                    <li>Check your internet connection</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Need Help?</h6>
+                                <ul class="text-start">
+                                    <li>Contact our support team</li>
+                                    <li>Check our FAQ section</li>
+                                    <li>Try booking again</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <a href="/" class="btn btn-primary me-2">Back to Home</a>
+                            <a href="/hotels/" class="btn btn-outline-primary">Browse Hotels</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-primary text-white text-center py-3">
+        <div class="container">
+            &copy; 2024 Hotel Booking. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
