@@ -77,21 +77,21 @@ footer {
 
 /* Mobile View (phones <576px) */
 @media (max-width: 400px) { 
-    .navbar  {
+   .navbar  {
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
     padding: 10px 20px !important;
-  }
+    position: relative; 
+}
     
-    .menu-icon {
-        position: absolute;
-        right: 20px;
-        top: 15px;
-        font-size: 24px;
-        cursor: pointer;
-    }
- 
+.menu-icon {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
     
     .container, .container-fluid {
         padding-left: 0.75rem !important;
