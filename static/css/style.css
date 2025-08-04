@@ -77,7 +77,10 @@ footer {
 
 /* Mobile View (phones <576px) */
 @media (max-width: 400px) {
-
+    .ns-navbar {
+       padding-top: 0.5rem;
+       padding-bottom:0.5rem;
+    }
     .navbar-header {
         display: flex;
         justify-content: space-between;
