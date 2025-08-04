@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Booking</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href={%static 'css/style.css' %}>
     <link rel="icon"  href="{% static 'images/favicon.ico' %}" type="image/x-icon">
     {% csrf_token %}
     <!-- Font Awesome for social media icons -->
@@ -74,7 +74,7 @@
                     <p>Relax in our spacious, clean, and comfortable rooms designed for your comfort.</p>
                 </div>
                 <div class="col-md-4 text-center mb-4">
-                    <img src="/static/images/service.jpg" class="img-fluid rounded mb-3" alt="Booking">
+                    <img src="/static/images/service.jpg" class="img-fluid rounded mb-3" alt="Service">
                     <h5>World-Class Service</h5>
                     <p>Our world-class service ensures a seamless and stress-free stay from arrival to departure.</p>
                 </div>
