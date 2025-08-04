@@ -76,16 +76,10 @@ footer {
 }
 
 /* Mobile View (phones <576px) */
-@media (max-width: 400px) {
-    .ns-navbar {
+@media (max-width: 400px) { 
+    .navbar {
        padding-top: 0.5rem;
        padding-bottom:0.5rem;
-    }
-    .navbar-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
     }
     .navbar-brand {
         font-size: 1.5rem;
