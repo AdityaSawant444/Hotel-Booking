@@ -85,13 +85,16 @@ footer {
     position: relative; 
 }
     
-.menu-icon {
+    .menu-icon {
     position: absolute;
     right: 20px;
     top: 15px;
     font-size: 24px;
     cursor: pointer;
 }
+    .navbar-toggler {
+        margin-right: 20px;
+    }
     
     .container, .container-fluid {
         padding-left: 0.75rem !important;
